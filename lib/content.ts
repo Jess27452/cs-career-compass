@@ -1,0 +1,100 @@
+export type Career = {
+  slug: string; name: string; description: string; category: string; tools: string[];
+  friendliness: "High" | "Medium" | "Steep"; algorithms: "Low" | "Medium" | "High"; math: "Low" | "Medium" | "High";
+};
+
+export const careers: Career[] = [
+  { slug:"software-engineering", name:"Software Engineering", description:"Design, build, test, and maintain dependable software products.", category:"Systems", tools:["Git","Python","Java"], friendliness:"High", algorithms:"High", math:"Low" },
+  { slug:"frontend-engineering", name:"Frontend Engineering", description:"Create fast, accessible interfaces people enjoy using.", category:"Web", tools:["TypeScript","React","CSS"], friendliness:"High", algorithms:"Medium", math:"Low" },
+  { slug:"backend-engineering", name:"Backend Engineering", description:"Build APIs, services, and data systems behind modern products.", category:"Web", tools:["PostgreSQL","Node.js","Docker"], friendliness:"Medium", algorithms:"High", math:"Low" },
+  { slug:"full-stack-engineering", name:"Full-Stack Engineering", description:"Own product experiences from interface to database.", category:"Web", tools:["Next.js","SQL","TypeScript"], friendliness:"High", algorithms:"Medium", math:"Low" },
+  { slug:"mobile-development", name:"Mobile Development", description:"Build native and cross-platform experiences for phones and tablets.", category:"Mobile", tools:["Swift","Kotlin","React Native"], friendliness:"Medium", algorithms:"Medium", math:"Low" },
+  { slug:"machine-learning-ai", name:"Machine Learning & AI", description:"Develop systems that learn from data and power intelligent products.", category:"AI", tools:["Python","PyTorch","Jupyter"], friendliness:"Steep", algorithms:"Medium", math:"High" },
+  { slug:"data-science", name:"Data Science", description:"Turn messy data into evidence, experiments, and decisions.", category:"Data", tools:["Python","SQL","pandas"], friendliness:"Medium", algorithms:"Low", math:"High" },
+  { slug:"data-engineering", name:"Data Engineering", description:"Create reliable pipelines and platforms that make data usable.", category:"Data", tools:["SQL","Spark","Airflow"], friendliness:"Medium", algorithms:"Medium", math:"Medium" },
+  { slug:"cybersecurity", name:"Cybersecurity", description:"Find weaknesses, reduce risk, and protect people and systems.", category:"Security", tools:["Linux","Burp Suite","Python"], friendliness:"Medium", algorithms:"Low", math:"Medium" },
+  { slug:"cloud-devops", name:"Cloud & DevOps", description:"Automate delivery and operate resilient infrastructure.", category:"Systems", tools:["AWS","Docker","Terraform"], friendliness:"Medium", algorithms:"Low", math:"Low" },
+  { slug:"game-development", name:"Game Development", description:"Combine systems, graphics, and storytelling into interactive worlds.", category:"Games", tools:["Unity","C#","Blender"], friendliness:"Medium", algorithms:"Medium", math:"High" },
+  { slug:"quantitative-development", name:"Quantitative Development", description:"Engineer research and trading systems for financial markets.", category:"Finance", tools:["C++","Python","Statistics"], friendliness:"Steep", algorithms:"High", math:"High" },
+  { slug:"technical-product-management", name:"Technical Product Management", description:"Translate user needs and business goals into technical direction.", category:"Product", tools:["Analytics","SQL","Figma"], friendliness:"Medium", algorithms:"Low", math:"Low" },
+  { slug:"research-graduate-school", name:"Research & Graduate School", description:"Create new knowledge through rigorous inquiry and experimentation.", category:"Research", tools:["LaTeX","Python","Papers"], friendliness:"Steep", algorithms:"Medium", math:"High" },
+];
+
+export const projects = [
+  ["Collaborative coding interview room","Real-time editor, test runner, presence, and structured feedback.","Advanced","React, WebSockets, Docker","Software Engineering"],
+  ["Campus opportunity aggregator","Collect, normalize, and search local research, club, and job opportunities.","Intermediate","Next.js, PostgreSQL","Full-Stack Engineering"],
+  ["Distributed URL shortener","Design a fault-aware redirect service with caching and observability.","Advanced","Go, Redis, Docker","Backend Engineering"],
+  ["Personal finance analytics","Explain spending patterns with privacy-minded import and categorization.","Intermediate","TypeScript, SQL, Charts","Data Science"],
+  ["Research-paper recommender","Recommend related papers using embeddings and transparent similarity signals.","Advanced","Python, PyTorch, FastAPI","Machine Learning & AI"],
+  ["Accessible course planner","Plan prerequisites and schedules with keyboard-first interaction.","Intermediate","React, Graphs, PostgreSQL","Frontend Engineering"],
+  ["Study-room availability app","Show live occupancy estimates and campus room details.","Intermediate","React Native, Supabase","Mobile Development"],
+  ["ML experiment tracker","Compare runs, metrics, parameters, and reproducible artifacts.","Advanced","Python, FastAPI, S3","Machine Learning & AI"],
+  ["Student project scanner","Detect exposed secrets and risky dependencies in repositories.","Advanced","Python, Semgrep, GitHub API","Cybersecurity"],
+  ["Cloud deployment monitor","Track health, deploys, logs, and service-level indicators.","Advanced","Go, OpenTelemetry, AWS","Cloud & DevOps"],
+  ["Multiplayer browser game","Create authoritative game state with lag compensation.","Advanced","Canvas, WebSockets, Node.js","Game Development"],
+  ["Public-data pipeline","Ingest, validate, transform, and publish a civic dataset.","Intermediate","Airflow, dbt, BigQuery","Data Engineering"],
+  ["Medication reminder prototype","Build an accessible offline-first reminder with careful notification UX.","Intermediate","Swift, SQLite","Mobile Development"],
+  ["Resume version tracker","Compare resume revisions and connect them to application outcomes.","Intermediate","Next.js, Postgres, Diff","Full-Stack Engineering"],
+  ["API reliability lab","Inject failures and visualize retries, queues, and circuit breakers.","Advanced","Go, Kafka, Grafana","Backend Engineering"],
+  ["Privacy settings auditor","Explain browser permission and tracker behavior without uploading history.","Intermediate","TypeScript, Extension APIs","Cybersecurity"],
+  ["Feature flag service","Create targeted rollouts, audit history, and safe defaults.","Advanced","Kotlin, Redis, Postgres","Software Engineering"],
+  ["Data quality observatory","Define checks and surface freshness, drift, and ownership.","Advanced","Python, dbt, DuckDB","Data Engineering"],
+  ["Local-first notes sync","Resolve concurrent offline edits across devices.","Advanced","TypeScript, CRDTs, IndexedDB","Frontend Engineering"],
+  ["Portfolio accessibility grader","Audit pages and turn findings into actionable learning cards.","Intermediate","Playwright, axe-core","Frontend Engineering"],
+  ["Quant research notebook","Backtest a transparent factor with leakage controls and cost assumptions.","Advanced","Python, pandas, statsmodels","Quantitative Development"],
+  ["Experiment design assistant","Turn product questions into metrics, sample-size plans, and guardrails.","Intermediate","Python, SQL, Streamlit","Data Science"],
+  ["Open-source contributor map","Help newcomers find well-scoped issues matched to their skills.","Intermediate","GraphQL, Next.js","Technical Product Management"],
+  ["Paper replication kit","Package code, environments, and evaluation notes for reproducible research.","Advanced","Python, Docker, LaTeX","Research & Graduate School"],
+].map(([title,description,difficulty,tech,career], i) => ({ id:i+1, slug:title.toLowerCase().replace(/[^a-z0-9]+/g,"-"), title, description, difficulty, tech, career }));
+
+export const resources = [
+  ["MDN Web Docs","https://developer.mozilla.org/","Web Development","Documentation"],
+  ["CS50x","https://cs50.harvard.edu/x/","Programming Foundations","Course"],
+  ["MIT OpenCourseWare: Algorithms","https://ocw.mit.edu/courses/6-006-introduction-to-algorithms-fall-2011/","Data Structures and Algorithms","Course"],
+  ["Python Documentation","https://docs.python.org/3/","Programming Foundations","Documentation"],
+  ["TypeScript Handbook","https://www.typescriptlang.org/docs/handbook/intro.html","Web Development","Documentation"],
+  ["React Documentation","https://react.dev/learn","Web Development","Documentation"],
+  ["Next.js Documentation","https://nextjs.org/docs","Web Development","Documentation"],
+  ["PostgreSQL Tutorial","https://www.postgresql.org/docs/current/tutorial.html","Databases and SQL","Documentation"],
+  ["SQLBolt","https://sqlbolt.com/","Databases and SQL","Practice platform"],
+  ["Git Book","https://git-scm.com/book/en/v2","Git and GitHub","Book"],
+  ["GitHub Skills","https://skills.github.com/","Git and GitHub","Practice platform"],
+  ["The Missing Semester","https://missing.csail.mit.edu/","Programming Foundations","Course"],
+  ["Full Stack Open","https://fullstackopen.com/en/","Web Development","Course"],
+  ["web.dev Learn","https://web.dev/learn/","Web Development","Course"],
+  ["OWASP Top 10","https://owasp.org/www-project-top-ten/","Cybersecurity","Documentation"],
+  ["PortSwigger Web Security Academy","https://portswigger.net/web-security","Cybersecurity","Practice platform"],
+  ["Docker Get Started","https://docs.docker.com/get-started/","Cloud and DevOps","Tutorial"],
+  ["Kubernetes Basics","https://kubernetes.io/docs/tutorials/kubernetes-basics/","Cloud and DevOps","Tutorial"],
+  ["AWS Skill Builder","https://skillbuilder.aws/","Cloud and DevOps","Course"],
+  ["PyTorch Tutorials","https://pytorch.org/tutorials/","Machine Learning","Tutorial"],
+  ["scikit-learn User Guide","https://scikit-learn.org/stable/user_guide.html","Machine Learning","Documentation"],
+  ["Kaggle Learn","https://www.kaggle.com/learn","Data Science","Course"],
+  ["pandas User Guide","https://pandas.pydata.org/docs/user_guide/","Data Science","Documentation"],
+  ["dbt Fundamentals","https://learn.getdbt.com/","Data Engineering","Course"],
+  ["Apache Airflow Docs","https://airflow.apache.org/docs/","Data Engineering","Documentation"],
+  ["System Design Primer","https://github.com/donnemartin/system-design-primer","System Design","Repository"],
+  ["Tech Interview Handbook","https://www.techinterviewhandbook.org/","LeetCode and Coding Interviews","Guide"],
+  ["Google Interview Warmup","https://grow.google/certificates/interview-warmup/","Behavioral Interviews","Practice platform"],
+  ["GitHub Student Developer Pack","https://education.github.com/pack","Internship Search","Tool"],
+  ["Open Source Guides","https://opensource.guide/","Open Source","Guide"],
+].map(([title,url,category,format], i) => ({ id:i+1, slug:title.toLowerCase().replace(/[^a-z0-9]+/g,"-"), title,url,category,format, description:`A trusted ${format.toLowerCase()} for building practical skills in ${category.toLowerCase()}.`, free:true, featured:[0,1,2,15,25].includes(i) }));
+
+export const roadmapPhases = [
+  ["01","Foundations","Choose one language, learn Git, and practice breaking problems into testable pieces.","4–6 weeks"],
+  ["02","Core technical skills","Learn the concepts and patterns that appear in your target role.","6–10 weeks"],
+  ["03","Tools & workflows","Use the same version control, testing, and debugging habits as strong teams.","3–4 weeks"],
+  ["04","First project","Ship a focused project that solves one real problem well.","3–5 weeks"],
+  ["05","Advanced project","Add reliability, scale, accessibility, or rigorous evaluation.","5–8 weeks"],
+  ["06","Portfolio & resume","Explain your decisions, evidence, and impact with clarity.","2–3 weeks"],
+  ["07","Interview preparation","Practice role-specific technical and behavioral communication.","Ongoing"],
+  ["08","Applications & network","Build a broad, organized pipeline and follow up thoughtfully.","Ongoing"],
+  ["09","Review & improve","Use feedback and outcomes to choose the next highest-value step.","Monthly"],
+];
+
+export const discussions = [
+  { title:"How did you choose between backend and data engineering?", category:"General Career Questions", replies:18, votes:42, author:"Maya R.", last:"12 min ago" },
+  { title:"A realistic eight-week internship prep plan", category:"Internship Applications", replies:31, votes:86, author:"Theo K.", last:"1 hr ago" },
+  { title:"What made your project conversation memorable?", category:"Project Ideas", replies:14, votes:57, author:"Ari L.", last:"3 hrs ago" },
+  { title:"First career fair: notes from the other side", category:"Resume and Portfolio", replies:9, votes:39, author:"Sample mentor", last:"Yesterday" },
+];

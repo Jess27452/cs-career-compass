@@ -1,0 +1,1 @@
+import type{Metadata}from"next";import{InterviewHub}from"@/components/interview-hub";export const metadata:Metadata={title:"Interview Preparation",description:"Technical and behavioral interview preparation."};export default function Page(){return <InterviewHub/>}
