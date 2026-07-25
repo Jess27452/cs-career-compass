@@ -4,6 +4,8 @@ import "./globals.css";
 import { SiteHeader, SiteFooter } from "@/components/site-shell";
 import { appConfig } from "@/lib/config";
 
+const assetBase = process.env.GITHUB_PAGES === "true" ? "/cs-career-compass" : "";
+
 const geistSans = Geist({
   variable: "--font-geist-sans",
   subsets: ["latin"],
@@ -34,8 +36,8 @@ export const metadata: Metadata = {
     images: ["/og.png"],
   },
   icons: {
-    icon: "/favicon.svg",
-    shortcut: "/favicon.svg",
+    icon: `${assetBase}/favicon.svg`,
+    shortcut: `${assetBase}/favicon.svg`,
   },
 };
 

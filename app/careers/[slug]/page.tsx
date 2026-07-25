@@ -4,6 +4,8 @@ import { ArrowRight, BriefcaseBusiness, CheckCircle2, Code2, Lightbulb, Wrench }
 import { careers, projects, resources, roadmapPhases } from "@/lib/content";
 import "../../detail.css";
 
+export function generateStaticParams(){return careers.map(({slug})=>({slug}))}
+
 export default async function Page({params}:{params:Promise<{slug:string}>}) {
   const {slug}=await params; const career=careers.find(c=>c.slug===slug); if(!career) notFound();
   const relatedProjects=projects.filter(p=>p.career===career.name).slice(0,3);

@@ -1,1 +1,22 @@
-import type{Metadata}from"next";import{requireAdmin}from"@/lib/supabase/server";import Link from"next/link";import{FileText,Flag,MessageCircle,ShieldCheck,Users}from"lucide-react";import"./admin.css";export const dynamic="force-dynamic";export const metadata:Metadata={title:"Administration",robots:{index:false,follow:false}};export default async function Page(){const state=await requireAdmin();if(!state.isAdmin)return <section className="section container"><div className="card admin-denied"><ShieldCheck/><h1>Administrator access required</h1><p>This route checks the signed-in profile role on the server. There is no public administrator signup.</p><Link className="btn btn-primary" href="/login">Sign in</Link></div></section>;return <section className="section container admin-page"><span className="eyebrow">Administration</span><h1>Platform overview</h1><div className="admin-stats"><Stat icon={<Users/>} label="Users" value="—"/><Stat icon={<FileText/>} label="Resources" value="30+"/><Stat icon={<MessageCircle/>} label="Forum posts" value="—"/><Stat icon={<Flag/>} label="Open reports" value="—"/></div><div className="card admin-table"><div><h2>Resource moderation</h2><input className="field" placeholder="Search resources…"/></div><table><thead><tr><th>Resource</th><th>Status</th><th>Source</th><th>Actions</th></tr></thead><tbody>{["MDN Web Docs","CS50x","System Design Primer"].map((x,i)=><tr key={x}><td>{x}</td><td><span className="pill">Visible</span></td><td>{i?"Seeded":"Verified"}</td><td><button>Open</button><button>Hide</button></td></tr>)}</tbody></table></div></section>}function Stat({icon,label,value}:{icon:React.ReactNode;label:string;value:string}){return <div className="card">{icon}<span>{label}</span><strong>{value}</strong></div>}
+import type { Metadata } from "next";
+import Link from "next/link";
+import { ShieldCheck } from "lucide-react";
+import "./admin.css";
+
+export const metadata: Metadata = {
+  title: "Administration",
+  robots: { index: false, follow: false },
+};
+
+export default function Page() {
+  return (
+    <section className="section container">
+      <div className="card admin-denied">
+        <ShieldCheck />
+        <h1>Administrator access required</h1>
+        <p>Administration is unavailable in the public static preview.</p>
+        <Link className="btn btn-primary" href="/login">Sign in</Link>
+      </div>
+    </section>
+  );
+}

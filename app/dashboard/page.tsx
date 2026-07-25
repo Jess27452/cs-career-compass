@@ -1,1 +1,11 @@
-import type{Metadata}from"next";import{Dashboard}from"@/components/dashboard";import{requireUser}from"@/lib/supabase/server";export const dynamic="force-dynamic";export const metadata:Metadata={title:"Dashboard",robots:{index:false,follow:false}};export default async function Page(){const{user,supabase}=await requireUser();let name="Explorer";if(user&&supabase){const{data}=await supabase.from("profiles").select("display_name").eq("id",user.id).single();name=data?.display_name||user.email?.split("@")[0]||name}return <Dashboard name={name} configured={Boolean(process.env.NEXT_PUBLIC_SUPABASE_URL)}/>}
+import type { Metadata } from "next";
+import { Dashboard } from "@/components/dashboard";
+
+export const metadata: Metadata = {
+  title: "Dashboard",
+  robots: { index: false, follow: false },
+};
+
+export default function Page() {
+  return <Dashboard name="Explorer" configured={Boolean(process.env.NEXT_PUBLIC_SUPABASE_URL)} />;
+}
