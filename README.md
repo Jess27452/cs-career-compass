@@ -1,6 +1,10 @@
 # CS Career Compass
 
+[![Deploy to GitHub Pages](https://github.com/Jess27452/cs-career-compass/actions/workflows/deploy-pages.yml/badge.svg)](https://github.com/Jess27452/cs-career-compass/actions/workflows/deploy-pages.yml)
+
 CS Career Compass turns broad computer-science career advice into concrete next steps. Visitors can compare career paths, browse milestone roadmaps, explore substantial project briefs, understand recruiting cycles, prepare for interviews, search trusted resources, and read community discussions. Accounts add private progress, bookmarks, behavioral stories, and application tracking. Community resources publish immediately after validation and remain subject to reporting and administrator moderation.
+
+**Live site:** [jess27452.github.io/cs-career-compass](https://jess27452.github.io/cs-career-compass/)
 
 ## Product areas
 
@@ -122,6 +126,7 @@ Composite primary keys prevent duplicate votes and bookmarks. Partial unique ind
 ```bash
 pnpm dev              # local Cloudflare-compatible preview
 pnpm build            # validated preview deployment build
+pnpm build:pages      # static GitHub Pages export
 pnpm build:vercel     # native Next.js production build
 pnpm lint
 pnpm test             # validation and RLS contract tests
@@ -137,6 +142,14 @@ pnpm test:e2e         # rendered public-route tests after pnpm build
 5. Add the production URL to Supabase Auth redirect URLs.
 6. Apply migrations and seed production before opening signups.
 7. Run a smoke test with two normal users and one administrator.
+
+## Deploy to GitHub Pages
+
+Every push to `main` runs `.github/workflows/deploy-pages.yml` and publishes the
+static export to [the live GitHub Pages site](https://jess27452.github.io/cs-career-compass/).
+GitHub Pages does not run server-side Next.js routes, so Supabase-backed account
+features require the public browser credentials to be configured as repository
+secrets. Use Vercel or another server-capable host when server routes are required.
 
 ## Security notes
 
