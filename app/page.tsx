@@ -1,5 +1,5 @@
 import Link from "next/link";
-import { ArrowRight, BookOpen, BriefcaseBusiness, Code2, FileText, FolderKanban, Plus, Search, Sparkles } from "lucide-react";
+import { ArrowRight, BookOpen, BriefcaseBusiness, Code2, ExternalLink, FileText, FolderKanban, Plus, Search, Sparkles } from "lucide-react";
 import { categories, seedResources } from "@/lib/resource-data";
 import { ResourceCard } from "@/components/resource-card";
 import "./home.css";
@@ -33,6 +33,24 @@ export default function Home() {
             const count = seedResources.filter((resource) => resource.category === category.name).length;
             return <Link className="category-card card" href={`/${category.slug}`} key={category.slug}><span className="category-icon"><Icon size={21} /></span><h3>{category.name}</h3><p>{category.description}</p><div><span>{count} resource{count === 1 ? "" : "s"}</span><ArrowRight size={17} /></div></Link>;
           })}
+        </div>
+      </section>
+
+      <section className="inside-section">
+        <div className="container">
+          <div className="inside-heading"><div><span className="eyebrow">Inside each category</span><h2>See what you’ll find.</h2></div><p>Jump straight to a useful resource, or open a category to explore the full collection.</p></div>
+          <div className="inside-grid">
+            {categories.map((category) => {
+              const categoryResources = seedResources.filter((resource) => resource.category === category.name).slice(0, 3);
+              return <article className="inside-column" key={category.slug}>
+                <div className="inside-column-head"><h3>{category.name}</h3><Link href={`/${category.slug}`} aria-label={`Browse all ${category.name} resources`}><ArrowRight size={15} /></Link></div>
+                <div className="inside-links">
+                  {categoryResources.map((resource) => <a href={resource.url} target="_blank" rel="noopener noreferrer" key={resource.id}><span><strong>{resource.id === "seed-4" ? "SimplifyJobs Summer 2026 Internships" : resource.title}</strong><small>{resource.subcategory}</small></span><ExternalLink size={14} /></a>)}
+                </div>
+                <Link className="inside-browse" href={`/${category.slug}`}>Browse {category.name} <ArrowRight size={13} /></Link>
+              </article>;
+            })}
+          </div>
         </div>
       </section>
 
