@@ -1,1 +1,5 @@
-import type {Metadata} from "next"; import {AuthForm} from "@/components/auth-form"; import "../auth.css"; export const metadata:Metadata={title:"Sign in",robots:{index:false,follow:false}}; export default function Page(){return <section className="auth-page"><div className="card auth-card"><span className="eyebrow">Welcome back</span><h1>Pick up where you left off.</h1><p>Your roadmap, bookmarks, applications, and notes stay private to your account.</p><AuthForm mode="login"/></div></section>}
+import type { Metadata } from "next";
+import { AuthForm } from "@/components/auth-form";
+import "../auth.css";
+export const metadata: Metadata = { title: "Sign in", robots: { index: false, follow: false } };
+export default function Page() { return <section className="auth-page"><div className="card auth-card"><span className="eyebrow">Welcome to CSRecruit</span><h1>Sign in to contribute.</h1><p>Submit resources, upvote useful finds, and manage everything you’ve shared.</p><AuthForm mode="login" /></div></section>; }

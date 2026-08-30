@@ -11,8 +11,8 @@ test("normalizes safe http and https URLs", () => {
 test("resource submissions enforce lengths and required fields", () => {
   const valid = resourceSubmissionSchema.safeParse({
     title: "A useful documentation site", url: "https://example.com/",
-    category: "Web Development", shortDescription: "A practical guide with clear examples for beginners.",
-    usefulFor: "Students learning modern web development", pricingType: "free", resourceFormat: "Documentation",
+    category: "Projects", subcategory: "Software Engineering",
+    description: "A practical guide with clear examples for beginners.", tags: "Web, Projects",
   });
   assert.equal(valid.success, true);
   assert.equal(resourceSubmissionSchema.safeParse({}).success, false);

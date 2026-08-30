@@ -1,8 +1,7 @@
 export const appConfig = {
-  name: "CS Career Compass",
-  shortName: "Career Compass",
-  description:
-    "Explore CS careers, follow practical roadmaps, build meaningful projects, and move through recruiting with confidence.",
+  name: "CSRecruit",
+  shortName: "CSRecruit",
+  description: "Community-curated resources for CS recruiting.",
   githubUrl: "https://github.com/",
-  contactEmail: "feedback@example.com",
+  contactEmail: "hello@csrecruit.dev",
 } as const;

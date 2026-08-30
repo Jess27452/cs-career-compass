@@ -13,11 +13,9 @@ export const resourceSubmissionSchema = z.object({
   title: z.string().trim().min(3).max(120),
   url: safeUrlSchema,
   category: z.string().min(1).max(80),
-  shortDescription: z.string().trim().min(20).max(280),
-  usefulFor: z.string().trim().min(10).max(240),
-  pricingType: z.enum(["free", "paid", "freemium"]),
-  resourceFormat: z.string().min(1).max(50),
-  detailedDescription: z.string().trim().max(3000).optional(),
+  subcategory: z.string().min(1).max(100),
+  description: z.string().trim().min(20).max(280),
+  notes: z.string().trim().max(2000).optional(),
   tags: z.string().max(240).optional(),
 });
 

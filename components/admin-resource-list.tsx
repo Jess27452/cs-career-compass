@@ -1,0 +1,19 @@
+"use client";
+
+import { Check, ExternalLink, Pencil, Trash2, X } from "lucide-react";
+import { useState } from "react";
+import { createClient } from "@/lib/supabase/client";
+import type { OwnedResource } from "@/components/profile-resources";
+
+type AdminResource = OwnedResource & { submitted_by?: string; profiles?: { username?: string | null } | null };
+
+export function AdminResourceList({ initialResources }: { initialResources: AdminResource[] }) {
+  const [resources, setResources] = useState(initialResources);
+  const [editing, setEditing] = useState<string | null>(null);
+  const [message, setMessage] = useState("");
+  async function setStatus(id: string, status: "approved" | "rejected") { const supabase = createClient(); if (!supabase) return; const { error } = await supabase.from("resources").update({ status }).eq("id", id); if (error) setMessage("Could not update that submission."); else setResources((items) => items.filter((item) => item.id !== id)); }
+  async function remove(id: string) { if (!confirm("Permanently delete this submission?")) return; const supabase = createClient(); if (!supabase) return; const { error } = await supabase.from("resources").delete().eq("id", id); if (error) setMessage("Could not delete that submission."); else setResources((items) => items.filter((item) => item.id !== id)); }
+  async function save(event: React.FormEvent<HTMLFormElement>, resource: AdminResource) { event.preventDefault(); const data = new FormData(event.currentTarget); const updates = { title: String(data.get("title")), description: String(data.get("description")), category: String(data.get("category")), subcategory: String(data.get("subcategory")) }; const supabase = createClient(); if (!supabase) return; const { error } = await supabase.from("resources").update(updates).eq("id", resource.id); if (error) setMessage("Could not save those changes."); else { setResources((items) => items.map((item) => item.id === resource.id ? { ...item, ...updates } : item)); setEditing(null); } }
+  if (!resources.length) return <div className="empty">No pending submissions. You’re all caught up.</div>;
+  return <div className="admin-list">{message && <p className="error">{message}</p>}{resources.map((resource) => <article className="card admin-resource" key={resource.id}>{editing === resource.id ? <form onSubmit={(event) => save(event, resource)}><input className="field" name="title" defaultValue={resource.title} /><textarea className="field" name="description" defaultValue={resource.description} /><div className="admin-form-row"><input className="field" name="category" defaultValue={resource.category} /><input className="field" name="subcategory" defaultValue={resource.subcategory} /></div><div><button className="btn btn-primary">Save changes</button><button type="button" className="btn btn-secondary" onClick={() => setEditing(null)}>Cancel</button></div></form> : <><header><div><span className="status status-pending">Pending</span><small>{resource.category} / {resource.subcategory}</small></div><span>{new Date(resource.created_at).toLocaleDateString()}</span></header><h2>{resource.title}</h2><p>{resource.description}</p><a className="admin-url" href={resource.url} target="_blank" rel="noopener noreferrer">{resource.url}<ExternalLink size={13} /></a><p className="admin-by">Submitted by {resource.profiles?.username || "Community member"}</p><footer><button className="approve" onClick={() => setStatus(resource.id, "approved")}><Check size={15} /> Approve</button><button className="reject" onClick={() => setStatus(resource.id, "rejected")}><X size={15} /> Reject</button><button onClick={() => setEditing(resource.id)}><Pencil size={14} /> Edit</button><button className="danger" onClick={() => remove(resource.id)}><Trash2 size={14} /> Delete</button></footer></>}</article>)}</div>;
+}

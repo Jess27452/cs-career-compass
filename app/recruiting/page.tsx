@@ -1,2 +1,2 @@
-import type { Metadata } from "next"; import { RecruitingPage } from "@/components/explorers";
-export const metadata:Metadata={title:"Recruiting Hub",description:"Plan recruiting timelines and job searches."}; export default function Page(){return <RecruitingPage/>}
+import { CategoryPage } from "@/components/category-page";
+export default function Page() { return <CategoryPage slug="recruiting" />; }
